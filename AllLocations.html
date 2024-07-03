@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Occurrence Map</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 600px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Occurrences Map</h1>
+        <div class="text-center mb-3">
+            <button id="allLocations" class="btn btn-info">All Locations</button>
+            <button id="top3" class="btn btn-primary">Top 3</button>
+            <button id="top5" class="btn btn-secondary">Top 5</button>
+            <button id="top10" class="btn btn-success">Top 10</button>
+        </div>
+        <div id="map"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([33.6844, 69.3267], 8);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        var occurrences = [
+                       {lat: 33.76444326, lng: 69.80091666, count: 318},
+            {lat: 33.33858, lng: 69.89841, count: 263},
+            {lat: 33.33666, lng: 69.88258, count: 252},
+            {lat: 33.418783, lng: 70.102538, count: 129},
+            {lat: 33.32492, lng: 69.87974, count: 111},
+            {lat: 33.330125, lng: 69.91027, count: 83},
+            {lat: 33.80244444, lng: 69.82044444, count: 75},
+            {lat: 33.30942, lng: 69.93049, count: 75},
+            {lat: 33.34556, lng: 69.9131, count: 71},
+            {lat: 33.3566, lng: 69.92441, count: 33},
+            {lat: 33.35483, lng: 69.89629, count: 32},
+            {lat: 33.32621, lng: 69.91743, count: 27},
+            {lat: 33.32236, lng: 69.90392, count: 24},
+            {lat: 33.28294, lng: 69.884831, count: 23},
+            {lat: 33.34648, lng: 69.92201, count: 21},
+            {lat: 33.3418, lng: 69.92093, count: 19},
+            {lat: 33.33749, lng: 69.92274, count: 17},
+            {lat: 33.34252, lng: 69.91743, count: 17},
+            {lat: 33.72536111, lng: 70.00227778, count: 15},
+            {lat: 33.34262, lng: 69.91117, count: 14},
+            {lat: 33.33841, lng: 69.92966, count: 13},
+            {lat: 33.335, lng: 69.90486, count: 12},
+            {lat: 33.82555556, lng: 69.88061111, count: 12},
+            {lat: 33.33993, lng: 69.91597, count: 12},
+            {lat: 33.34343, lng: 69.88636, count: 11},
+            {lat: 33.81650028, lng: 69.84783195, count: 11},
+            {lat: 33.33978, lng: 69.92108, count: 11},
+            {lat: 34.513664, lng: 69.322668, count: 10},
+            {lat: 33.3339, lng: 69.91256, count: 9},
+            {lat: 33.33842, lng: 69.9248, count: 9},
+            {lat: 33.33897, lng: 69.94025, count: 8},
+            {lat: 33.31934, lng: 69.84751, count: 8},
+            {lat: 33.18441667, lng: 69.80877778, count: 7},
+            {lat: 33.80366667, lng: 69.78922222, count: 6},
+            {lat: 33.28166667, lng: 69.63030556, count: 6},
+            {lat: 33.33786, lng: 69.91568, count: 6},
+            {lat: 33.34337, lng: 69.93049, count: 6},
+            {lat: 33.48075, lng: 69.37447222, count: 6},
+            {lat: 33.37308, lng: 69.90965, count: 5},
+            {lat: 33.3298, lng: 69.92354, count: 5},
+            {lat: 33.75597222, lng: 69.15419444, count: 5},
+            {lat: 33.341289, lng: 69.923987, count: 4},
+            {lat: 33.34364, lng: 69.94537, count: 4},
+            {lat: 33.71182, lng: 69.38728, count: 3},
+            {lat: 33.34585, lng: 70.00572, count: 3},
+            {lat: 33.26083, lng: 69.92918, count: 3},
+            {lat: 34.537, lng: 69.18476667, count: 3},
+            {lat: 33.64027, lng: 69.22585, count: 3},
+            {lat: 33.59578, lng: 69.23986, count: 2},
+            {lat: 33.82436111, lng: 69.93666667, count: 2},
+            {lat: 33.84592, lng: 69.62027, count: 2},
+            {lat: 34.40841, lng: 70.46853, count: 2},
+            {lat: 33.68518, lng: 69.3537, count: 2},
+            {lat: 31.62082, lng: 65.69051, count: 2},
+            {lat: 33.341289, lng: 69.923941, count: 2},
+            {lat: 33.31897, lng: 69.96087, count: 2},
+            {lat: 33.494666, lng: 70.025638, count: 2},
+            {lat: 33.38409, lng: 70.10883, count: 2},
+            {lat: 33.23577778, lng: 70.095, count: 2},
+            {lat: 33.3768, lng: 69.76492, count: 2},
+            {lat: 33.28294, lng: 69.884709, count: 2},
+            {lat: 33.30722222, lng: 69.56505556, count: 2},
+            {lat: 34.55933333, lng: 69.12933333, count: 1},
+            {lat: 34.5432, lng: 69.18723, count: 1},
+            {lat: 33.19661111, lng: 69.53763889, count: 1},
+            {lat: 34.5004449, lng: 69.2471742, count: 1},
+            {lat: 33.62405, lng: 69.21869, count: 1},
+            {lat: 33.60025, lng: 69.22832, count: 1},
+            {lat: 33.80575, lng: 69.93341667, count: 1},
+            {lat: 33.60459, lng: 69.24625, count: 1},
+            {lat: 33.34211, lng: 69.87381, count: 1},
+            {lat: 33.79563889, lng: 69.88916667, count: 1},
+            {lat: 33.78344444, lng: 69.51844444, count: 1},
+            {lat: 33.35, lng: 70.07861, count: 1},
+            {lat: 33.74675, lng: 69.47167, count: 1},
+            {lat: 33.380936, lng: 70.01317, count: 1},
+            {lat: 33.58939, lng: 69.16886, count: 1},
+            {lat: 33.62802, lng: 69.26232, count: 1},
+            {lat: 34.56308333, lng: 69.12926667, count: 1}
+        ];
+
+        var markers = [];
+
+        function getColor(count) {
+            if (count === 318 || count === 263 || count === 252) {
+                return 'red';
+            } else if (count >= 200) {
+                return '#0000FF'; // Darker Blue
+            } else if (count >= 100) {
+                return '#3366FF';
+            } else if (count >= 50) {
+                return '#6699FF';
+            } else if (count >= 20) {
+                return '#99CCFF';
+            } else if (count >= 10) {
+                return '#CCE5FF';
+            } else {
+                return '#E6F0FF'; // Lightest Blue
+            }
+        }
+
+        function updateMarkers(topCount) {
+            markers.forEach(function(marker) {
+                map.removeLayer(marker);
+            });
+            markers = [];
+
+            var sortedOccurrences = occurrences.sort(function(a, b) {
+                return b.count - a.count;
+            });
+
+            var filteredOccurrences = topCount ? sortedOccurrences.slice(0, topCount) : occurrences;
+
+            filteredOccurrences.forEach(function(occurrence) {
+                var markerColor = getColor(occurrence.count);
+                var marker = L.circleMarker([occurrence.lat, occurrence.lng], {
+                    radius: 8,
+                    fillColor: markerColor,
+                    color: '#000',
+                    weight: 1,
+                    opacity: 1,
+                    fillOpacity: 0.8
+                }).addTo(map);
+
+                marker.bindPopup("Occurrences: " + occurrence.count);
+                markers.push(marker);
+            });
+
+            if (filteredOccurrences.length > 0) {
+                var bounds = L.latLngBounds(filteredOccurrences.map(function(occurrence) {
+                    return [occurrence.lat, occurrence.lng];
+                }));
+                map.fitBounds(bounds);
+            }
+        }
+
+        document.getElementById('allLocations').addEventListener('click', function() {
+            updateMarkers(null);
+        });
+
+        document.getElementById('top3').addEventListener('click', function() {
+            updateMarkers(3);
+        });
+
+        document.getElementById('top5').addEventListener('click', function() {
+            updateMarkers(5);
+        });
+
+        document.getElementById('top10').addEventListener('click', function() {
+            updateMarkers(10);
+        });
+
+        // Initial load with top 10
+        updateMarkers(10);
+    </script>
+</body>
+</html>
