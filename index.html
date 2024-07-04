@@ -11,16 +11,50 @@
             height: 600px;
             width: 100%;
         }
+        .button-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .button-section h2 {
+            margin-right: 20px;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+        }
     </style>
 </head>
 <body>
     <div class="container mt-5">
         <h1 class="text-center">Occurrences Map</h1>
-        <div class="text-center mb-3">
-            <button id="allLocations" class="btn btn-info">All Locations</button>
-            <button id="top3" class="btn btn-primary">Top 3</button>
-            <button id="top5" class="btn btn-secondary">Top 5</button>
-            <button id="top10" class="btn btn-success">Top 10</button>
+        <div class="button-section">
+            <h2>Past Data</h2>
+            <div class="button-group">
+                <button id="allLocationsData1" class="btn btn-info">All Locations</button>
+                <button id="top3Data1" class="btn btn-primary">Top 3</button>
+                <button id="top5Data1" class="btn btn-secondary">Top 5</button>
+                <button id="top10Data1" class="btn btn-success">Top 10</button>
+            </div>
+        </div>
+        <div class="button-section">
+            <h2>New Data</h2>
+            <div class="button-group">
+                <button id="allLocationsData2" class="btn btn-info">All Locations</button>
+                <button id="top3Data2" class="btn btn-primary">Top 3</button>
+                <button id="top5Data2" class="btn btn-secondary">Top 5</button>
+                <button id="top10Data2" class="btn btn-success">Top 10</button>
+            </div>
+        </div>
+        <div class="button-section">
+            <h2>Merged View</h2>
+            <div class="button-group">
+                <button id="allLocationsMerged" class="btn btn-info">All Locations</button>
+                <button id="top3Merged" class="btn btn-primary">Top 3</button>
+                <button id="top5Merged" class="btn btn-secondary">Top 5</button>
+                <button id="top10Merged" class="btn btn-success">Top 10</button>
+            </div>
         </div>
         <div id="map"></div>
     </div>
@@ -35,9 +69,167 @@
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
+    var data1 = [
+    {lat: 33.33666, lng: 69.88258, count: 370},
+    {lat: 33.330125, lng: 69.91027, count: 273},
+    {lat: 33.32492, lng: 69.87974, count: 242},
+    {lat: 33.35483, lng: 69.89629, count: 130},
+    {lat: 33.34556, lng: 69.9131, count: 120},
+    {lat: 33.33841, lng: 69.92966, count: 95},
+    {lat: 33.76444326, lng: 69.80091666, count: 93},
+    {lat: 33.33858, lng: 69.89841, count: 65},
+    {lat: 33.80244444, lng: 69.82044444, count: 64},
+    {lat: 33.32236, lng: 69.90392, count: 62},
+    {lat: 33.33667, lng: 69.96982, count: 50},
+    {lat: 33.34262, lng: 69.91117, count: 39},
+    {lat: 33.34648, lng: 69.92201, count: 39},
+    {lat: 33.33786, lng: 69.91568, count: 33},
+    {lat: 33.33993, lng: 69.91597, count: 32},
+    {lat: 33.30942, lng: 69.93049, count: 32},
+    {lat: 33.3418, lng: 69.92093, count: 32},
+    {lat: 33.72536111, lng: 70.00227778, count: 32},
+    {lat: 33.37308, lng: 69.90965, count: 29},
+    {lat: 33.33897, lng: 69.94025, count: 27},
+    {lat: 33.34252, lng: 69.91743, count: 27},
+    {lat: 33.82555556, lng: 69.88061111, count: 26},
+    {lat: 33.341289, lng: 69.923987, count: 25},
+    {lat: 33.3339, lng: 69.91256, count: 25},
+    {lat: 33.34343, lng: 69.88636, count: 20},
+    {lat: 33.79563889, lng: 69.88916667, count: 19},
+    {lat: 33.418783, lng: 70.102538, count: 19},
+    {lat: 33.32621, lng: 69.91743, count: 19},
+    {lat: 33.33842, lng: 69.9248, count: 16},
+    {lat: 33.335, lng: 69.90486, count: 16},
+    {lat: 33.33749, lng: 69.92274, count: 15},
+    {lat: 33.34211, lng: 69.87381, count: 15},
+    {lat: 33.81650028, lng: 69.84783195, count: 12},
+    {lat: 34.40670833, lng: 69.14336389, count: 12},
+    {lat: 33.34337, lng: 69.93049, count: 12},
+    {lat: 33.45686, lng: 69.99994, count: 9},
+    {lat: 33.341289, lng: 69.923941, count: 9},
+    {lat: 33.82436111, lng: 69.93666667, count: 8},
+    {lat: 33.28294, lng: 69.884831, count: 8},
+    {lat: 34.513664, lng: 69.322668, count: 8},
+    {lat: 33.60025, lng: 69.22832, count: 7},
+    {lat: 33.31934, lng: 69.84751, count: 7},
+    {lat: 33.28294, lng: 69.884709, count: 6},
+    {lat: 33.80575, lng: 69.93341667, count: 6},
+    {lat: 33.38409, lng: 70.10883, count: 5},
+    {lat: 33.18441667, lng: 69.80877778, count: 5},
+    {lat: 33.34364, lng: 69.94537, count: 5},
+    {lat: 33.33978, lng: 69.92108, count: 5},
+    {lat: 33.3566, lng: 69.92441, count: 4},
+    {lat: 33.23938, lng: 69.82965, count: 4},
+    {lat: 33.23577778, lng: 70.095, count: 3},
+    {lat: 33.24898, lng: 69.77275, count: 3},
+    {lat: 33.31897, lng: 69.96087, count: 3},
+    {lat: 33.71182, lng: 69.38728, count: 3},
+    {lat: 33.68518, lng: 69.3537, count: 2},
+    {lat: 34.52855556, lng: 69.17036111, count: 2},
+    {lat: 33.26915, lng: 69.895, count: 2},
+    {lat: 33.33028, lng: 69.91668, count: 2},
+    {lat: 33.75597222, lng: 69.15419444, count: 2},
+    {lat: 37.18830556, lng: 67.38880556, count: 2},
+    {lat: 33.61626, lng: 69.21924, count: 1},
+    {lat: 33.60796, lng: 69.20939, count: 1},
+    {lat: 34.491321, lng: 69.2895085, count: 1},
+    {lat: 34.510628, lng: 69.170289, count: 1},
+    {lat: 34.51211111, lng: 69.16875, count: 1},
+    {lat: 33.35, lng: 70.07861, count: 1},
+    {lat: 34.51745, lng: 69.185434, count: 1},
+    {lat: 34.51871667, lng: 69.17268333, count: 1},
+    {lat: 34.51883333, lng: 69.17798056, count: 1},
+    {lat: 34.52298303, lng: 69.16935946, count: 1},
+    {lat: 34.52332, lng: 69.173908, count: 1},
+    {lat: 34.523661, lng: 69.108447, count: 1},
+    {lat: 34.523809, lng: 69.175596, count: 1},
+    {lat: 33.380936, lng: 70.01317, count: 1},
+    {lat: 34.530727, lng: 69.165836, count: 1},
+    {lat: 34.54052, lng: 69.25835, count: 1},
+    {lat: 34.5527651, lng: 69.3580316, count: 1},
+    {lat: 34.560934, lng: 69.165205, count: 1},
+    {lat: 35.183806, lng: 69.27625, count: 1},
+    {lat: 34.49069462, lng: 69.15441792, count: 1},
+    {lat: 34.49002796, lng: 69.28026391, count: 1},
+    {lat: 33.48075, lng: 69.37447222, count: 1},
+    {lat: 33.3298, lng: 69.92354, count: 1},
+    {lat: 33.60434, lng: 69.22262, count: 1},
+    {lat: 33.33172, lng: 69.93336, count: 1},
+    {lat: 33.74675, lng: 69.47167, count: 1},
+    {lat: 33.59731, lng: 69.21399, count: 1},
+    {lat: 34.492924, lng: 69.276935, count: 1},
+    {lat: 34.495668, lng: 69.263601, count: 1},
+    {lat: 34.51180556, lng: 69.16886111, count: 1},
+    {lat: 34.513324, lng: 69.179705, count: 1},
+    {lat: 33.31826, lng: 69.9208, count: 1},
+    {lat: 34.545763, lng: 69.224436, count: 1},
+    {lat: 34.546857, lng: 69.273986, count: 1},
+    {lat: 34.565236, lng: 69.219462, count: 1},
+    {lat: 34.518726, lng: 69.177877, count: 1},
+    {lat: 34.491333, lng: 69.290724, count: 1},
+    {lat: 34.48879, lng: 69.287169, count: 1},
+    {lat: 34.495092, lng: 69.263346, count: 1},
+    {lat: 34.49498, lng: 69.28529, count: 1},
+    {lat: 34.490588, lng: 69.288928, count: 1},
+    {lat: 33.77558, lng: 69.50597, count: 1},
+    {lat: 33.32838, lng: 69.91637, count: 1},
+    {lat: 34.512217, lng: 69.268006, count: 1},
+    {lat: 33.55647, lng: 69.21565, count: 1},
+    {lat: 33.33089, lng: 69.92354, count: 1},
+    {lat: 33.32972, lng: 69.9171, count: 1},
+    {lat: 33.59991, lng: 69.22884, count: 1},
+    {lat: 34.490588, lng: 69.287441, count: 1},
+    {lat: 34.508883, lng: 69.265552, count: 1},
+    {lat: 34.517968, lng: 69.185944, count: 1},
+    {lat: 34.525407, lng: 69.200225, count: 1},
+    {lat: 34.492618, lng: 69.288012, count: 1},
+    {lat: 34.490284, lng: 69.281447, count: 1},
+    {lat: 34.492618, lng: 69.288008, count: 1},
+    {lat: 34.488854, lng: 69.287149, count: 1},
+    {lat: 34.488787, lng: 69.286921, count: 1},
+    {lat: 34.495101, lng: 69.263447, count: 1},
+    {lat: 34.495177, lng: 69.263366, count: 1},
+    {lat: 34.491255, lng: 69.288708, count: 1},
+    {lat: 34.495077, lng: 69.263337, count: 1},
+    {lat: 33.47667, lng: 69.39944, count: 1},
+    {lat: 34.49045, lng: 69.28894, count: 1},
+    {lat: 34.48877, lng: 69.28764, count: 1},
+    {lat: 33.73495, lng: 69.5595, count: 1},
+    {lat: 34.488842, lng: 69.286996, count: 1},
+    {lat: 33.489944, lng: 69.448833, count: 1},
+    {lat: 33.480806, lng: 69.374483, count: 1},
+    {lat: 33.3353, lng: 69.9073, count: 1},
+    {lat: 33.3309, lng: 69.9171, count: 1},
+    {lat: 33.35453, lng: 69.87394, count: 1},
+    {lat: 34.499925, lng: 69.266137, count: 1},
+    {lat: 34.497861, lng: 69.276442, count: 1},
+    {lat: 34.498646, lng: 69.276661, count: 1},
+    {lat: 34.497599, lng: 69.263302, count: 1},
+    {lat: 34.497, lng: 69.28531, count: 1},
+    {lat: 34.499001, lng: 69.262209, count: 1},
+    {lat: 33.32883, lng: 69.91568, count: 1},
+    {lat: 33.3273, lng: 69.9158, count: 1},
+    {lat: 34.526804, lng: 69.169269, count: 1},
+    {lat: 34.508947, lng: 69.266122, count: 1},
+    {lat: 34.511819, lng: 69.168878, count: 1},
+    {lat: 34.492895, lng: 69.287287, count: 1},
+    {lat: 34.488789, lng: 69.287148, count: 1},
+    {lat: 34.511819, lng: 69.168878, count: 1},
+    {lat: 34.497975, lng: 69.26159, count: 1},
+    {lat: 34.49508, lng: 69.263306, count: 1},
+    {lat: 34.494873, lng: 69.263439, count: 1},
+    {lat: 34.488789, lng: 69.287148, count: 1},
+    {lat: 34.488709, lng: 69.287546, count: 1},
+    {lat: 33.490015, lng: 69.448833, count: 1},
+    {lat: 33.480806, lng: 69.374483, count: 1},
+    {lat: 34.497861, lng: 69.276442, count: 1},
+    {lat: 34.488787, lng: 69.286921, count: 1},
+    {lat: 33.330125, lng: 69.91027, count: 273}
+];
 
-        var occurrences = [
-                       {lat: 33.76444326, lng: 69.80091666, count: 318},
+
+        var data2 = [
+                 {lat: 33.76444326, lng: 69.80091666, count: 318},
             {lat: 33.33858, lng: 69.89841, count: 263},
             {lat: 33.33666, lng: 69.88258, count: 252},
             {lat: 33.418783, lng: 70.102538, count: 129},
@@ -116,42 +308,61 @@
             {lat: 33.58939, lng: 69.16886, count: 1},
             {lat: 33.62802, lng: 69.26232, count: 1},
             {lat: 34.56308333, lng: 69.12926667, count: 1}
-        ];
+          ];
+
 
         var markers = [];
 
-        function getColor(count) {
-            if (count === 318 || count === 263 || count === 252) {
-                return 'red';
-            } else if (count >= 200) {
-                return '#0000FF'; // Darker Blue
-            } else if (count >= 100) {
-                return '#3366FF';
-            } else if (count >= 50) {
-                return '#6699FF';
-            } else if (count >= 20) {
-                return '#99CCFF';
-            } else if (count >= 10) {
-                return '#CCE5FF';
-            } else {
-                return '#E6F0FF'; // Lightest Blue
+        function getColor(count, type) {
+            if (type === 'data1') {
+                if (count === 318 || count === 263 || count === 252) {
+                    return 'red';
+                } else if (count >= 200) {
+                    return '#0000FF'; // Darker Blue
+                } else if (count >= 100) {
+                    return '#3366FF';
+                } else if (count >= 50) {
+                    return '#6699FF';
+                } else if (count >= 20) {
+                    return '#99CCFF';
+                } else if (count >= 10) {
+                    return '#CCE5FF';
+                } else {
+                    return '#E6F0FF'; // Lightest Blue
+                }
+            } else if (type === 'data2') {
+                if (count === 318 || count === 263 || count === 252) {
+                    return 'purple';
+                } else if (count >= 200) {
+                    return '#800080'; // Darker Purple
+                } else if (count >= 100) {
+                    return '#993399';
+                } else if (count >= 50) {
+                    return '#CC66CC';
+                } else if (count >= 20) {
+                    return '#FF99FF';
+                } else if (count >= 10) {
+                    return '#FFCCFF';
+                } else {
+                    return '#FFE6FF'; // Lightest Purple
+                }
             }
         }
 
-        function updateMarkers(topCount) {
+        function updateMarkers(data, topCount, type) {
             markers.forEach(function(marker) {
                 map.removeLayer(marker);
             });
             markers = [];
 
-            var sortedOccurrences = occurrences.sort(function(a, b) {
+            var sortedOccurrences = data.sort(function(a, b) {
                 return b.count - a.count;
             });
 
-            var filteredOccurrences = topCount ? sortedOccurrences.slice(0, topCount) : occurrences;
+            var filteredOccurrences = topCount ? sortedOccurrences.slice(0, topCount) : data;
 
             filteredOccurrences.forEach(function(occurrence) {
-                var markerColor = getColor(occurrence.count);
+                var markerColor = getColor(occurrence.count, type);
                 var marker = L.circleMarker([occurrence.lat, occurrence.lng], {
                     radius: 8,
                     fillColor: markerColor,
@@ -164,33 +375,91 @@
                 marker.bindPopup("Occurrences: " + occurrence.count);
                 markers.push(marker);
             });
-
-            if (filteredOccurrences.length > 0) {
-                var bounds = L.latLngBounds(filteredOccurrences.map(function(occurrence) {
-                    return [occurrence.lat, occurrence.lng];
-                }));
-                map.fitBounds(bounds);
-            }
         }
 
-        document.getElementById('allLocations').addEventListener('click', function() {
-            updateMarkers(null);
+        document.getElementById('allLocationsData1').addEventListener('click', function() {
+            updateMarkers(data1, null, 'data1');
+            map.setView([33.6844, 69.3267], 8);
         });
 
-        document.getElementById('top3').addEventListener('click', function() {
-            updateMarkers(3);
+        document.getElementById('top3Data1').addEventListener('click', function() {
+            updateMarkers(data1, 3, 'data1');
+            map.setView([33.6844, 69.3267], 10);
         });
 
-        document.getElementById('top5').addEventListener('click', function() {
-            updateMarkers(5);
+        document.getElementById('top5Data1').addEventListener('click', function() {
+            updateMarkers(data1, 5, 'data1');
+            map.setView([33.6844, 69.3267], 10);
         });
 
-        document.getElementById('top10').addEventListener('click', function() {
-            updateMarkers(10);
+        document.getElementById('top10Data1').addEventListener('click', function() {
+            updateMarkers(data1, 10, 'data1');
+            map.setView([33.6844, 69.3267], 9);
         });
 
-        // Initial load with top 10
-        updateMarkers(10);
+        document.getElementById('allLocationsData2').addEventListener('click', function() {
+            updateMarkers(data2, null, 'data2');
+            map.setView([33.6844, 69.3267], 8);
+        });
+
+        document.getElementById('top3Data2').addEventListener('click', function() {
+            updateMarkers(data2, 3, 'data2');
+            map.setView([33.6844, 69.3267], 10);
+        });
+
+        document.getElementById('top5Data2').addEventListener('click', function() {
+            updateMarkers(data2, 5, 'data2');
+            map.setView([33.6844, 69.3267], 10);
+        });
+
+        document.getElementById('top10Data2').addEventListener('click', function() {
+            updateMarkers(data2, 10, 'data2');
+            map.setView([33.6844, 69.3267], 9);
+        });
+
+        function mergeData(data1, data2) {
+            var mergedData = {};
+            data1.forEach(function(occurrence) {
+                var key = occurrence.lat + ',' + occurrence.lng;
+                mergedData[key] = occurrence.count;
+            });
+
+            data2.forEach(function(occurrence) {
+                var key = occurrence.lat + ',' + occurrence.lng;
+                if (mergedData[key]) {
+                    mergedData[key] += occurrence.count;
+                } else {
+                    mergedData[key] = occurrence.count;
+                }
+            });
+
+            return Object.keys(mergedData).map(function(key) {
+                var coords = key.split(',');
+                return { lat: parseFloat(coords[0]), lng: parseFloat(coords[1]), count: mergedData[key] };
+            });
+        }
+
+        var mergedData = mergeData(data1, data2);
+
+        document.getElementById('allLocationsMerged').addEventListener('click', function() {
+            updateMarkers(mergedData, null, 'merged');
+            map.setView([33.6844, 69.3267], 8);
+        });
+
+        document.getElementById('top3Merged').addEventListener('click', function() {
+            updateMarkers(mergedData, 3, 'merged');
+            map.setView([33.6844, 69.3267], 10);
+        });
+
+        document.getElementById('top5Merged').addEventListener('click', function() {
+            updateMarkers(mergedData, 5, 'merged');
+            map.setView([33.6844, 69.3267], 10);
+        });
+
+        document.getElementById('top10Merged').addEventListener('click', function() {
+            updateMarkers(mergedData, 10, 'merged');
+            map.setView([33.6844, 69.3267], 9);
+        });
     </script>
 </body>
 </html>
